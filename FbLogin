@@ -1,0 +1,50 @@
+package DataDrivenTesting;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Properties;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class Script1DDT {
+
+	public static void main(String[] args) throws IOException {
+		
+		//copy file from ROM to RAM 
+		FileInputStream f=new FileInputStream("../SeleniumWebDriver/src/DataDrivenTesting/test.properties");
+		
+		//open file
+		Properties p=new Properties();
+		p.load(f);
+		
+		//fetch data from file
+		String str =p.getProperty("email");
+		String str1=p.getProperty("pass");
+		
+		WebDriverManager.firefoxdriver().setup();
+		WebDriver driver =new FirefoxDriver();
+		driver.get("http://www.facebook.com");
+		
+		//enter email from file to app
+		driver.findElement(By.id("email")).sendKeys(str);
+		
+		//enter pass from file to app
+		driver.findElement(By.id("pass")).sendKeys(str1);
+		driver.findElement(By.name("login")).click();
+		
+		//to  write new data in file
+		p.setProperty("mob", "993300");
+		
+		//to store written data RAM into ROM
+		FileOutputStream output=new FileOutputStream("../SeleniumWebDriver/src/DataDrivenTesting/test.properties");
+		p.store(output, "test");
+		
+
+	}
+
+}
