@@ -1,0 +1,54 @@
+package facebook_automate;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class Facebook_createAcc {
+
+	public static void main(String[] args) throws InterruptedException {
+	
+		WebDriverManager.firefoxdriver().setup();
+		WebDriver driver=new FirefoxDriver();
+		driver.get("https://www.facebook.com");
+		
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		driver.findElement(By.linkText("Create New Account")).click();
+		
+		driver.findElement(By.name("firstname")).sendKeys("nils");
+		
+		
+		
+		driver.findElement(By.name("lastname")).sendKeys("shah");
+		
+		
+		driver.findElement(By.name("reg_email__")).sendKeys("+919021993300");
+	   
+	
+		driver.findElement(By.name("reg_passwd__")).sendKeys("Abhi@123");
+		
+		
+		driver.findElement(By.id("year"));
+		
+		 driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/form[1]/div[1]/div[5]/div[2]/span[1]/span[1]/select[1]")).sendKeys("22");
+		 driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/form[1]/div[1]/div[5]/div[2]/span[1]/span[1]/select[2]")).sendKeys("feb");
+		 driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/form[1]/div[1]/div[5]/div[2]/span[1]/span[1]/select[3]")).sendKeys("1996");
+		  
+		
+		 
+		
+		driver.findElement(By.className("_8esa")).click();
+		
+	
+		driver.findElement(By.name("websubmit")).click();
+		
+		
+		//driver.findElement(By.linkText("Close")).click();
+
+	}
+
+}
